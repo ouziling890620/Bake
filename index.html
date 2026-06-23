@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小禾日和 | 手作烘焙的溫暖日常</title>
+    <!-- 引入 Google Fonts: Noto Sans TC -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- 導覽列 -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/images/bakeLogoremovedCut.png" alt="小禾日和 Logo" class="logo-img">
+            小禾日和
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">首頁</a></li>
+            <li><a href="#about">關於我們</a></li>
+            <li><a href="#products">預訂出爐美味</a></li>
+        </ul>
+
+        <!-- 新增購物車狀態 -->
+        <div class="nav-icons">
+            <div class="cart-status" id="cart-btn">
+                <span class="cart-text">購物車</span>
+                <span class="cart-icon">🛒</span>
+                <span id="cart-count">0</span>
+            </div>
+            <!-- 漢堡選單按鈕 -->
+            <div class="hamburger" id="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+
+        <!-- 購物車清單彈出視窗 -->
+        <div id="cart-modal" class="cart-modal">
+            <h3>您的購物車</h3>
+            <ul id="cart-items-list"></ul>
+            <div class="cart-total">
+                <span>總計金額</span>
+                <span>$ <span id="cart-total-amount">0</span></span>
+            </div>
+            <button id="checkout-btn" class="btn btn-full">前往結帳</button>
+        </div>
+    </nav>
+
+    <!-- Hero 區塊 -->
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <h1>小禾日和</h1>
+            <h2>天然食材 × 減糖配方 × 手作烘焙</h2>
+            <p>慢慢烘焙，細細品味，每一天都是好日和。</p>
+            <a href="#products" class="btn">預訂出爐美味</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- 關於我們 -->
+        <section id="about" class="section">
+            <h2 class="section-title">關於小禾日和</h2>
+            <div class="about-container">
+                <p>我們堅持選用日本進口麵粉與天然發酵奶油，不添加人工香料。對我們而言，烘焙不只是製作食物，更是傳遞一份如同冬日暖陽般的溫柔心意。</p>
+                <img src="images/4.cabinWithLogo.jpg" alt="烘焙小木屋" class="about-img">
+            </div>
+        </section>
+
+        <!-- 作品展示區 -->
+        <section id="products" class="section bg-light">
+            <h2 class="section-title">預訂出爐美味</h2>
+
+            <!-- 麵包類 -->
+            <div class="category-group">
+                <h3>🥖 職人麵包</h3>
+                <div class="product-grid">
+                    <article class="card">
+                        <div class="card-img" style="background-image: url('images/toast.jpg')"></div>
+                        <h4>日式生吐司</h4>
+                        <p>極致柔軟，入口即化的香醇口感。</p>
+                        <p class="price">$150</p>
+                        <div class="quantity-control">
+                            <label>數量</label>
+                            <div class="qty-selector">
+                                <button type="button" class="qty-btn minus">-</button>
+                                <input type="number" class="item-qty" value="1" min="1">
+                                <button type="button" class="qty-btn plus">+</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-cart">加入購物車</button>
+                    </article>
+                    <article class="card">
+                        <div class="card-img" style="background-image: url('/images/butterRoll.jpg')"></div>
+                        <h4>海鹽卷</h4>
+                        <p>嚴選沖繩海鹽，外脆內軟的經典滋味。</p>
+                        <p class="price">$45</p>
+                        <div class="quantity-control">
+                            <label>數量</label>
+                            <div class="qty-selector">
+                                <button type="button" class="qty-btn minus">-</button>
+                                <input type="number" class="item-qty" value="1" min="1">
+                                <button type="button" class="qty-btn plus">+</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-cart">加入購物車</button>
+                    </article>
+                    <article class="card">
+                        <div class="card-img" style="background-image: url('/images/Sourdough.jpg')"></div>
+                        <h4>酸種麵包</h4>
+                        <p>天然酵母長時間發酵，帶有迷人微酸。</p>
+                        <p class="price">$180</p>
+                        <div class="quantity-control">
+                            <label>數量</label>
+                            <div class="qty-selector">
+                                <button type="button" class="qty-btn minus">-</button>
+                                <input type="number" class="item-qty" value="1" min="1">
+                                <button type="button" class="qty-btn plus">+</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-cart">加入購物車</button>
+                    </article>
+                </div>
+            </div>
+
+            <!-- 蛋糕類 -->
+            <div class="category-group">
+                <h3>🍰 甜心蛋糕</h3>
+                <div class="product-grid">
+                    <article class="card">
+                        <div class="card-img" style="background-image: url('/images/teaChiffon.jpg')"></div>
+                        <h4>伯爵茶戚風蛋糕</h4>
+                        <p>如雲朵般的輕盈蓬鬆，淡淡伯爵茶香。</p>
+                        <p class="price">$150</p>
+                        <div class="quantity-control">
+                            <label>數量</label>
+                            <div class="qty-selector">
+                                <button type="button" class="qty-btn minus">-</button>
+                                <input type="number" class="item-qty" value="1" min="1">
+                                <button type="button" class="qty-btn plus">+</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-cart">加入購物車</button>
+                    </article>
+                    <article class="card">
+                        <div class="card-img" style="background-image: url('/images/strawberryCake.jpg')"></div>
+                        <h4>草莓鮮奶油蛋糕</h4>
+                        <p>選用當季草莓與清爽鮮奶油。</p>
+                        <p class="price">$250</p>
+                        <div class="quantity-control">
+                            <label>數量</label>
+                            <div class="qty-selector">
+                                <button type="button" class="qty-btn minus">-</button>
+                                <input type="number" class="item-qty" value="1" min="1">
+                                <button type="button" class="qty-btn plus">+</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-cart">加入購物車</button>
+                    </article>
+                    <article class="card">
+                        <div class="card-img" style="background-image: url('/images/matchaRoll.jpg')"></div>
+                        <h4>小山園抹茶卷</h4>
+                        <p>濃郁抹茶回甘，職人級的抹度。</p>
+                        <p class="price">$250</p>
+                        <div class="quantity-control">
+                            <label>數量</label>
+                            <div class="qty-selector">
+                                <button type="button" class="qty-btn minus">-</button>
+                                <input type="number" class="item-qty" value="1" min="1">
+                                <button type="button" class="qty-btn plus">+</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-cart">加入購物車</button>
+                    </article>
+                </div>
+            </div>
+
+            <!-- 餅乾類 -->
+            <div class="category-group">
+                <h3>🍪 手作餅乾</h3>
+                <div class="product-grid scroll-x">
+                    <article class="card">
+                        <div class="card-img" style="background-image: url('/images/chocolateCookie.jpg')"></div>
+                        <h4>燕麥巧克力</h4>
+                        <p>紮實口感，減糖配方無負擔。</p>
+                        <p class="price">$120</p>
+                        <div class="quantity-control">
+                            <label>數量</label>
+                            <div class="qty-selector">
+                                <button type="button" class="qty-btn minus">-</button>
+                                <input type="number" class="item-qty" value="1" min="1">
+                                <button type="button" class="qty-btn plus">+</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-cart">加入購物車</button>
+                    </article>
+                    <article class="card">
+                        <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1573827196605-0a95831e07f9?q=80&w=1178&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"></div>
+                        <h4>奶油曲奇</h4>
+                        <p>純天然發酵奶油，奶香濃郁誘人。</p>
+                        <p class="price">$150</p>
+                        <div class="quantity-control">
+                            <label>數量</label>
+                            <div class="qty-selector">
+                                <button type="button" class="qty-btn minus">-</button>
+                                <input type="number" class="item-qty" value="1" min="1">
+                                <button type="button" class="qty-btn plus">+</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-cart">加入購物車</button>
+                    </article>
+                    <article class="card">
+                        <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1594236114270-f5feb79f52a1?q=80&w=1222&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"></div>
+                        <h4>覆盆莓果醬餅乾</h4>
+                        <p>厚實餅乾，搭配濃郁不甜膩的果醬。</p>
+                        <p class="price">$160</p>
+                        <div class="quantity-control">
+                            <label>數量</label>
+                            <div class="qty-selector">
+                                <button type="button" class="qty-btn minus">-</button>
+                                <input type="number" class="item-qty" value="1" min="1">
+                                <button type="button" class="qty-btn plus">+</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-cart">加入購物車</button>
+                    </article>
+                    <article class="card">
+                        <div class="card-img" style="background-image: url('https://plus.unsplash.com/premium_photo-1667907624639-5a29911acb35?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"></div>
+                        <h4>小小薑餅人</h4>
+                        <p>可愛造型，濃郁肉桂香氣，溫馨滋味。</p>
+                        <p class="price">$100</p>
+                        <div class="quantity-control">
+                            <label>數量</label>
+                            <div class="qty-selector">
+                                <button type="button" class="qty-btn minus">-</button>
+                                <input type="number" class="item-qty" value="1" min="1">
+                                <button type="button" class="qty-btn plus">+</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-cart">加入購物車</button>
+                    </article>
+                </div>
+            </div>
+
+            <!-- 包子類 -->
+            <div class="category-group">
+                <h3>🥟 暖心包子</h3>
+                <div class="product-grid">
+                    <article class="card">
+                        <div class="card-img" style="background-image: url('/images/meatBao.jpg')"></div>
+                        <h4>鮮肉包</h4>
+                        <p>老麵揉製麵皮，內餡鮮甜多汁。</p>
+                        <p class="price">$40</p>
+                        <div class="quantity-control">
+                            <label>數量</label>
+                            <div class="qty-selector">
+                                <button type="button" class="qty-btn minus">-</button>
+                                <input type="number" class="item-qty" value="1" min="1">
+                                <button type="button" class="qty-btn plus">+</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-cart">加入購物車</button>
+                    </article>
+                    <article class="card">
+                        <div class="card-img" style="background-image: url('/images/yoljBao.jpg')"></div>
+                        <h4>奶黃流沙包</h4>
+                        <p>自製鹹蛋黃內餡，流沙口感。</p>
+                        <p class="price">$45</p>
+                        <div class="quantity-control">
+                            <label>數量</label>
+                            <div class="qty-selector">
+                                <button type="button" class="qty-btn minus">-</button>
+                                <input type="number" class="item-qty" value="1" min="1">
+                                <button type="button" class="qty-btn plus">+</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-cart">加入購物車</button>
+                    </article>
+                    <article class="card">
+                        <div class="card-img" style="background-image: url('/images/seasameBao.jpg')"></div>
+                        <h4>芝麻包</h4>
+                        <p>香氣濃郁，大人小孩都愛。</p>
+                        <p class="price">$35</p>
+                        <div class="quantity-control">
+                            <label>數量</label>
+                            <div class="qty-selector">
+                                <button type="button" class="qty-btn minus">-</button>
+                                <input type="number" class="item-qty" value="1" min="1">
+                                <button type="button" class="qty-btn plus">+</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-cart">加入購物車</button>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 結帳區 -->
+        <section id="contact" class="checkout-overlay">
+            <div class="form-container">
+                <button id="close-checkout" class="close-btn">&times;</button>
+                <h2 class="section-title">填寫購買人資訊</h2>
+                <!-- 新增：結帳商品明細摘要 -->
+                <div class="checkout-summary">
+                    <ul id="checkout-items-list"></ul>
+                    <div class="checkout-total-summary">總計：$ <span id="checkout-total-amount">0</span></div>
+                </div>
+                <form id="orderForm">
+                    <div class="form-group">
+                        <label for="name">姓名</label>
+                        <input type="text" id="name" required placeholder="您的稱呼">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">手機號碼</label>
+                        <input type="tel" id="phone" required placeholder="聯絡電話">
+                    </div>
+                    <div class="form-group">
+                        <label for="pickup-date">取貨日期</label>
+                        <input type="date" id="pickup-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pickup-time">取貨時間</label>
+                        <select id="pickup-time" required>
+                            <option value="" disabled selected hidden>選擇取貨時間</option>
+                            <!-- <select> 元素本身並不像 <input> 那樣支援 placeholder 屬性。
+                            value=""：當 <select> 標籤有 required 屬性時，瀏覽器會檢查選中的值是否為空。設定為空值能確保使用者必須切換到其他時間段才能提交表單。
+                            selected：確保網頁載入時，第一眼看到的就是這個選項。
+                            disabled：防止使用者在打開選單後又手動去選取這個「提示文字」。
+                            hidden：在下拉選單展開時消失，看起來更像真正的 Placeholder。 -->
+                            <option value="10:00-12:00">10:00-12:00</option>
+                            <option value="12:00-14:00">12:00-14:00</option>
+                            <option value="14:00-16:00">14:00-16:00</option>
+                            <option value="16:00-18:00">16:00-18:00</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">備註說明</label>
+                        <textarea id="message" rows="4" placeholder="請告訴我們您的需求"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-full">提交預訂</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- 提交成功彈窗 -->
+        <div id="success-overlay" class="success-overlay">
+            <div class="success-card">
+                <div class="checkmark-wrapper">
+                    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                        <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                        <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                    </svg>
+                </div>
+                <h3>訂單已提交</h3>
+                <div id="success-order-details" class="success-order-details"></div>
+                <p class="success-note">謝謝您的訂購，期待與您相遇！</p>
+                <button id="back-to-home-btn" class="btn btn-full">返回首頁</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- 頁尾 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <p>聯絡我們：02-2345-6789</p>
+                <p>信箱：<a href="mailto:contact@nichiwabakery.org">contact@nichiwabakery.org</a></p>
+                <p>地址：新北市稻禾區日光路134號</p>
+                <p>營業時間：每日 10:00 - 18:00 (週三公休)</p>
+            </div>
+            <p class="copyright">&copy; 2023 小禾日和 手作烘焙所. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/cartscript.js"></script>
+</body>
+</html>

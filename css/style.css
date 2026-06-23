@@ -1,0 +1,814 @@
+/* 基本設定 */
+:root {
+    --primary-color: #8D6E63; /* 溫潤咖啡色 */
+    --accent-color: #FFB74D;  /* 麵包金黃色 */
+    --bg-color: #FFFDF5;      /* 奶油底色 */
+    --text-color: #4E342E;    /* 深褐色文字 */
+    --light-gray: #F5F5F5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* 平滑捲動 */
+}
+
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+/* 導覽列 */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: rgba(255, 253, 245, 0.95);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    flex: 1;               /* 將 .logo 和 .cart-status 都設定為 flex: 1。這意味著瀏覽器會先分配選單（中間項）的空間，然後將剩餘的空間平均分配給左右兩邊。因為左右佔地一樣大，選單自然就會被推到正中央。 */
+    display: flex;         /* 使用彈性佈局讓圖片與文字並排 */
+    align-items: center;   /* 垂直置中對齊 */
+    gap: 10px;             /* 圖片與文字之間的間距 */
+}
+
+.logo-img {
+    height: 40px;          /* 設定 Logo 的高度，寬度會依比例縮放 */
+    width: auto;
+    object-fit: contain;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    flex: 0 0 auto;        /* 保持選單原本寬度 */
+    gap: 20px;             /* 使用 gap 取代 margin-left 讓間距更精準 */
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: var(--text-color);
+    transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+    color: var(--accent-color);
+}
+
+/* 導覽列圖示區域樣式 */
+.nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.cart-status {
+    position: relative;
+    font-size: 1.5rem;
+    display: flex;         /* 新增：讓文字與圖示並排 */
+    align-items: center;   /* 新增：垂直居中對齊 */
+    gap: 8px;             /* 新增：文字與圖示間的距離 */
+    cursor: pointer;
+}
+
+.cart-text {
+    font-size: 1rem;       /* 設定文字大小 */
+    color: var(--primary-color);
+    font-weight: 400;
+}
+
+/* 漢堡選單樣式 */
+.hamburger {
+    display: none; /* 平時隱藏 */
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger .line {
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+#cart-count {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: #e74c3c; /* 醒目的紅色 */
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+/* 購物車清單視窗樣式 */
+.cart-modal {
+    display: none; /* 預設隱藏 */
+    position: absolute;
+    top: 70px;
+    right: 5%;
+    width: 280px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 20px;
+    z-index: 1001;
+    border: 1px solid #eee;
+}
+
+.cart-modal.active {
+    display: block; /* 加上 active 類別時顯示 */
+}
+
+.cart-modal h3 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+#cart-items-list {
+    list-style: none;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+}
+
+#cart-items-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 刪除按鈕樣式 */
+.delete-item {
+    background: none;
+    border: none;
+    color: #e74c3c;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 0 5px;
+    line-height: 1;
+    transition: color 0.3s;
+}
+
+.delete-item:hover {
+    color: #c0392b;
+    font-weight: bold;
+}
+
+.price {
+    padding: 0 15px 10px;
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.cart-total {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 2px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+/* Hero 區 */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                url('https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-content {
+    display: inline-block; /* 讓容器寬度由最長的子元素(h2)決定 */
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+    text-align: justify;
+    text-align-last: justify;
+    text-justify: inter-character; /* 關鍵：確保中文字元能均勻分散填滿寬度 */
+}
+
+.hero-content h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    white-space: nowrap; /* 確保 h2 是一直線，作為 h1 對齊的基準 */
+}
+
+.hero-content p {
+    font-size: 1.1rem; /* 稍微縮小字體 */
+    margin-top: 1rem; /* 增加與上方 h2 的距離 */
+    margin-bottom: 2rem;
+}
+
+/* 按鈕樣式 */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: background 0.3s;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn:hover {
+    background-color: #FFA726;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+/* 區塊通用樣式 */
+.section {
+    padding: 80px 10%;
+}
+
+.bg-light {
+    background-color: #FDF8F0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: var(--accent-color);
+    margin: 10px auto;
+}
+
+/* 關於我們區塊圖片樣式 */
+.about-container {
+    text-align: center;
+}
+
+.about-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    margin-top: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* 產品分類樣式 */
+.category-group {
+    margin-bottom: 50px;
+}
+
+.category-group h3 {
+    margin-bottom: 20px;
+    border-left: 5px solid var(--accent-color);
+    padding-left: 15px;
+}
+
+/* Grid 排版 */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+    /* 當產品的描述長度不一時，會把下方元素往下拉，導致按鈕無法對齊。要解決這個問題，最專業的做法是設定為Flexbox容器，並利用 margin-top:auto將按鈕推至底部。 */
+    display: flex;           /* 新增：開啟彈性佈局 */
+    flex-direction: column;  /* 新增：垂直排列內容 */
+    height: 100%;            /* 在Grid排版中，設定此屬性確保所有卡片內部空間一致。 */
+    
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-img {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.card h4 {
+    padding: 15px 15px 5px;
+}
+
+.card p {
+    padding: 0 15px 10px;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* 數量控制區塊樣式 */
+.quantity-control {
+    margin-top: auto;   /* 新增：將數量控制與下方的按鈕一起推至卡片底部 */
+    padding: 0 15px 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.qty-selector {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    background: white;
+}
+
+.qty-btn {
+    background: #fdfdfd;
+    border: none;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    transition: background 0.2s;
+}
+
+.qty-btn:hover {
+    background: #f0f0f0;
+}
+
+.item-qty {
+    width: 40px;
+    height: 28px;
+    border: none;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    text-align: center;
+    color: var(--text-color);
+    outline: none;
+}
+
+/* 隱藏 Chrome/Safari/Edge/Opera 的數字輸入框預設箭頭 */
+.item-qty::-webkit-outer-spin-button,
+.item-qty::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* 加入購物車按鈕特定樣式 */
+.btn-cart {
+    width: calc(100% - 30px); /* 扣除左右 padding */
+    margin: 0 15px 20px;      /* 修改：移除 margin-top: auto，改由上方的數量控制區塊負責推擠空間 */
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 8px;
+    font-size: 0.9rem;
+}
+
+.btn-cart:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* 表單樣式 */
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+/* 讓 Chrome/Edge/Safari 的日期輸入框內文字繼承顏色設定 */
+.form-group input[type="date"]::-webkit-datetime-edit {
+    color: inherit;
+}
+
+/* 統一設定所有輸入框、多行文字框與下拉選單預設文字的顏色 */
+.form-group input::placeholder,
+.form-group textarea::placeholder,
+.form-group select:required:invalid,
+.form-group input[type="date"]:invalid {
+    color: #757575; /* 使用瀏覽器標準的預設灰色 */
+    opacity: 1;     /* 移除部分瀏覽器（如 Firefox）對預設文字設定的透明度 */
+}
+
+/* 展開選單後，確保內部的選項恢復成原本的深褐色 */
+.form-group select option {
+    color: var(--text-color);
+}
+
+/* 結帳畫面彈窗樣式 */
+.checkout-overlay {
+    display: none; /* 預設隱藏 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px; /* 新增：四周保留間距，防止貼邊 */
+}
+
+.checkout-overlay.active {
+    display: flex;
+}
+
+.checkout-overlay .form-container {
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 15px;
+    max-height: 90vh; /* 新增：限制最大高度為螢幕的 90% */
+    overflow-y: auto;
+    animation: slideUp 0.3s ease-out;
+
+    /* 修正 Firefox 捲軸蓋住圓角的問題 */
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) transparent;
+}
+
+/* 自定義結帳視窗捲軸樣式 (針對 Chrome, Edge, Safari) */
+.checkout-overlay .form-container::-webkit-scrollbar {
+    width: 10px; /* 設定捲軸寬度 */
+}
+
+.checkout-overlay .form-container::-webkit-scrollbar-track {
+    background: transparent; /* 讓軌道透明，確保能看到底層容器的圓角 */
+}
+
+.checkout-overlay .form-container::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    border: 3px solid white; /* 使用與背景相同的白色邊框，讓滑塊與邊緣產生間距，避免觸碰圓角邊界 */
+    background-clip: content-box; /* 確保背景色只顯示在內容區域，不包含邊框，達到縮小拉條的效果 */
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--primary-color);
+}
+
+/* 結帳明細摘要樣式 */
+.checkout-summary {
+    background-color: #fdf8f0;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+}
+
+#checkout-items-list {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+#checkout-items-list li {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    border-bottom: 1px dashed #ddd;
+    padding: 5px 0;
+}
+
+.checkout-total-summary {
+    text-align: right;
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+/* 結帳視窗提交按鈕樣式調整 */
+#orderForm .btn {
+    background-color: var(--accent-color); /* 使用與麵包標籤裝飾一致的金黃色 */
+    font-weight: 700;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#orderForm .btn:hover {
+    background-color: #fca120; /* 懸停時轉為稍微深一點的金黃色 */
+    transform: scale(1.01);    /* 增加微小的放大回饋感 */
+}
+
+/*提交成功彈窗樣式，加入成功遮罩與勾勾動畫的樣式 */
+/*包含了圓圈繪製stroke、填色fill與彈跳scale的動畫效果。*/
+.success-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 3000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px; /* 與結帳區相同的間距 */
+}
+
+.success-overlay.active { display: flex; }
+
+.success-card {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 320px;
+    width: 90%;
+    max-height: 90vh; /* 與結帳區相同的最大高度 */
+    overflow-y: auto; /* 內容過長時可捲動 */
+    animation: slideUp 0.4s ease-out;
+
+    /* 修正捲軸蓋住圓角的問題 (比照結帳區) */
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) transparent;
+}
+
+/* 自定義成功視窗捲軸樣式 */
+.success-card::-webkit-scrollbar {
+    width: 10px;
+}
+
+.success-card::-webkit-scrollbar-track {
+    background: transparent;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+}
+
+.success-card::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    border: 3px solid white;
+    background-clip: content-box;
+}
+
+.success-card h3 { margin: 10px 0; color: var(--primary-color); }
+.success-card p { font-size: 0.9rem; color: #666; }
+
+#back-to-home-btn {
+    margin-top: 25px; /* 增加按鈕與上方文字的間距 */
+}
+
+/* 成功視窗內的訂單明細樣式 */
+.success-order-details {
+    text-align: left;
+    background: #fdf8f0;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px 0;
+    font-size: 0.85rem;
+    border: 1px dashed var(--accent-color);
+    color: var(--text-color);
+}
+
+.success-info-grid p {
+    margin: 4px 0 !important;
+}
+
+.success-order-details hr {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 10px 0;
+}
+
+.success-items-list {
+    list-style: none;
+    padding: 0;
+}
+
+.success-total {
+    font-weight: bold;
+    text-align: right;
+    margin-top: 10px !important;
+    color: var(--primary-color) !important;
+}
+
+/* 勾勾動畫 */
+.checkmark-wrapper { width: 80px; height: 80px; margin: 0 auto; }
+.checkmark {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 2;
+    stroke: #fff;
+    stroke-miterlimit: 10;
+    box-shadow: inset 0px 0px 0px #4bb543;
+    animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+}
+.checkmark-circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #4bb543;
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+.checkmark-check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke { 100% { stroke-dashoffset: 0; } }
+@keyframes fill { 100% { box-shadow: inset 0px 0px 0px 40px #4bb543; } }
+@keyframes scale { 0%, 100% { transform: none; } 50% { transform: scale3d(1.1, 1.1, 1); } }
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* 頁尾 */
+.footer {
+    padding: 60px 20px;
+    background: var(--primary-color);
+    color: white;
+    text-align: center;
+}
+
+.footer-info {
+    margin-bottom: 30px;
+}
+
+.footer-info p {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.footer-info a {
+    color: white;
+    text-decoration: underline;
+}
+
+.copyright {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+/* 手機版響應式 */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .nav-links {
+        position: fixed;
+        right: 0px;
+        top: 70px;
+        height: calc(100vh - 70px);
+        background-color: var(--bg-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        transform: translateX(100%); /* 預設在右側畫面外 */
+        transition: transform 0.4s ease-in-out;
+        padding-top: 50px;
+        gap: 30px;
+        box-shadow: -2px 5px 10px rgba(0,0,0,0.05);
+    }
+
+    .nav-links.nav-active {
+        transform: translateX(0%); /* 點擊後滑入 */
+    }
+
+    .hamburger {
+        display: flex; /* 手機版顯示漢堡按鈕 */
+    }
+
+    /* 漢堡按鈕變形成 X 的動畫 */
+    .hamburger.toggle .line:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
+    .hamburger.toggle .line:nth-child(2) { opacity: 0; }
+    .hamburger.toggle .line:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
+    
+    .section {
+        padding: 50px 5%;
+    }
+}
+/* 修改後的產品網格設定 */
+.product-grid {
+    display: grid;
+    /* 強制將每列分為三等份並排 (1fr 代表一等份) */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px; /* 卡片與卡片之間的間距 */
+    margin-bottom: 40px;
+}
+
+/* 響應式設定：當螢幕寬度小於 992px 時（如平板），改為兩欄 */
+@media (max-width: 992px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 響應式設定：當螢幕寬度小於 768px 時（如手機），改為一欄 */
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 橫向捲動功能樣式 */
+.product-grid.scroll-x {
+    display: flex;           /* 覆蓋原本的 Grid，改用 Flex 以便橫向排列 */
+    overflow-x: auto;        /* 開啟水平捲動 */
+    gap: 30px;
+    padding-bottom: 15px;    /* 為捲軸留出空間 */
+    scroll-snap-type: x mandatory; /* 讓卡片捲動時有「磁吸」效果 */
+    -webkit-overflow-scrolling: touch; /* 優化 iOS 捲動流暢度 */
+}
+
+.product-grid.scroll-x .card {
+    flex: 0 0 280px;         /* 確保卡片寬度固定，不會被壓縮 */
+    scroll-snap-align: start; /* 磁吸對齊起始位置 */
+}
+
+/* 優化橫向捲軸外觀 */
+.product-grid.scroll-x::-webkit-scrollbar {
+    height: 6px;
+}
+
+.product-grid.scroll-x::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 10px;
+}
+
+.product-grid.scroll-x::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
