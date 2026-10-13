@@ -42,15 +42,15 @@ body {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary-color);
-    flex: 1;               /* 將 .logo 和 .cart-status 都設定為 flex: 1。這意味著瀏覽器會先分配選單（中間項）的空間，然後將剩餘的空間平均分配給左右兩邊。因為左右佔地一樣大，選單自然就會被推到正中央。 */
-    display: flex;         /* 使用彈性佈局讓圖片與文字並排 */
-    align-items: center;   /* 垂直置中對齊 */
-    gap: 10px;             /* 圖片與文字之間的間距 */
+    flex: 1;               
+    display: flex;         /* 圖片與文字並排 */
+    align-items: center;   
+    gap: 10px;             
 }
 
 .logo-img {
-    height: 40px;          /* 設定 Logo 的高度，寬度會依比例縮放 */
-    width: auto;
+    height: 40px;          
+    width: auto;   /* Logo 寬度依比例縮放 */
     object-fit: contain;
 }
 
@@ -58,7 +58,7 @@ body {
     display: flex;
     list-style: none;
     flex: 0 0 auto;        /* 保持選單原本寬度 */
-    gap: 20px;             /* 使用 gap 取代 margin-left 讓間距更精準 */
+    gap: 20px;             
 }
 
 .nav-links li a {
@@ -83,14 +83,14 @@ body {
 .cart-status {
     position: relative;
     font-size: 1.5rem;
-    display: flex;         /* 新增：讓文字與圖示並排 */
-    align-items: center;   /* 新增：垂直居中對齊 */
-    gap: 8px;             /* 新增：文字與圖示間的距離 */
+    display: flex;         /* 讓文字與圖示並排 */
+    align-items: center;   
+    gap: 8px;             
     cursor: pointer;
 }
 
 .cart-text {
-    font-size: 1rem;       /* 設定文字大小 */
+    font-size: 1rem;       
     color: var(--primary-color);
     font-weight: 400;
 }
@@ -114,7 +114,7 @@ body {
     position: absolute;
     top: -5px;
     right: -10px;
-    background-color: #e74c3c; /* 醒目的紅色 */
+    background-color: #e74c3c; 
     color: white;
     border-radius: 50%;
     padding: 2px 6px;
@@ -138,7 +138,7 @@ body {
 }
 
 .cart-modal.active {
-    display: block; /* 加上 active 類別時顯示 */
+    display: block; 
 }
 
 .cart-modal h3 {
@@ -222,7 +222,7 @@ body {
     margin-bottom: 0.5rem;
     text-align: justify;
     text-align-last: justify;
-    text-justify: inter-character; /* 關鍵：確保中文字元能均勻分散填滿寬度 */
+    text-justify: inter-character; /* 中文字元均勻分散填滿寬度 */
 }
 
 .hero-content h2 {
@@ -233,8 +233,8 @@ body {
 }
 
 .hero-content p {
-    font-size: 1.1rem; /* 稍微縮小字體 */
-    margin-top: 1rem; /* 增加與上方 h2 的距離 */
+    font-size: 1.1rem; 
+    margin-top: 1rem; 
     margin-bottom: 2rem;
 }
 
@@ -322,10 +322,9 @@ body {
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     transition: transform 0.3s;
-    /* 當產品的描述長度不一時，會把下方元素往下拉，導致按鈕無法對齊。要解決這個問題，最專業的做法是設定為Flexbox容器，並利用 margin-top:auto將按鈕推至底部。 */
-    display: flex;           /* 新增：開啟彈性佈局 */
-    flex-direction: column;  /* 新增：垂直排列內容 */
-    height: 100%;            /* 在Grid排版中，設定此屬性確保所有卡片內部空間一致。 */
+    display: flex;           /* 彈性佈局 */
+    flex-direction: column;  /* 垂直排列內容 */
+    height: 100%;            
     
 }
 
@@ -351,7 +350,7 @@ body {
 
 /* 數量控制區塊樣式 */
 .quantity-control {
-    margin-top: auto;   /* 新增：將數量控制與下方的按鈕一起推至卡片底部 */
+    margin-top: auto;   
     padding: 0 15px 10px;
     display: flex;
     align-items: center;
@@ -404,8 +403,8 @@ body {
 
 /* 加入購物車按鈕特定樣式 */
 .btn-cart {
-    width: calc(100% - 30px); /* 扣除左右 padding */
-    margin: 0 15px 20px;      /* 修改：移除 margin-top: auto，改由上方的數量控制區塊負責推擠空間 */
+    width: calc(100% - 30px); 
+    margin: 0 15px 20px;      
     background-color: transparent;
     color: var(--primary-color);
     border: 1px solid var(--primary-color);
@@ -455,7 +454,7 @@ body {
 .form-group textarea::placeholder,
 .form-group select:required:invalid,
 .form-group input[type="date"]:invalid {
-    color: #757575; /* 使用瀏覽器標準的預設灰色 */
+    color: #757575; 
     opacity: 1;     /* 移除部分瀏覽器（如 Firefox）對預設文字設定的透明度 */
 }
 
@@ -476,7 +475,7 @@ body {
     z-index: 2000;
     align-items: center;
     justify-content: center;
-    padding: 20px; /* 新增：四周保留間距，防止貼邊 */
+    padding: 20px; 
 }
 
 .checkout-overlay.active {
@@ -488,7 +487,7 @@ body {
     width: 90%;
     max-width: 500px;
     border-radius: 15px;
-    max-height: 90vh; /* 新增：限制最大高度為螢幕的 90% */
+    max-height: 90vh; 
     overflow-y: auto;
     animation: slideUp 0.3s ease-out;
 
@@ -499,18 +498,18 @@ body {
 
 /* 自定義結帳視窗捲軸樣式 (針對 Chrome, Edge, Safari) */
 .checkout-overlay .form-container::-webkit-scrollbar {
-    width: 10px; /* 設定捲軸寬度 */
+    width: 10px; /* 捲軸寬度 */
 }
 
 .checkout-overlay .form-container::-webkit-scrollbar-track {
-    background: transparent; /* 讓軌道透明，確保能看到底層容器的圓角 */
+    background: transparent; /* 軌道透明，能看到底層容器的圓角 */
 }
 
 .checkout-overlay .form-container::-webkit-scrollbar-thumb {
     background-color: var(--primary-color);
     border-radius: 10px;
-    border: 3px solid white; /* 使用與背景相同的白色邊框，讓滑塊與邊緣產生間距，避免觸碰圓角邊界 */
-    background-clip: content-box; /* 確保背景色只顯示在內容區域，不包含邊框，達到縮小拉條的效果 */
+    border: 3px solid white; 
+    background-clip: content-box; 
 }
 
 .close-btn {
@@ -555,18 +554,17 @@ body {
 
 /* 結帳視窗提交按鈕樣式調整 */
 #orderForm .btn {
-    background-color: var(--accent-color); /* 使用與麵包標籤裝飾一致的金黃色 */
+    background-color: var(--accent-color); /* 與麵包標籤裝飾一致的金黃色 */
     font-weight: 700;
     transition: background-color 0.3s, transform 0.2s;
 }
 
 #orderForm .btn:hover {
-    background-color: #fca120; /* 懸停時轉為稍微深一點的金黃色 */
-    transform: scale(1.01);    /* 增加微小的放大回饋感 */
+    background-color: #fca120; 
+    transform: scale(1.01);   
 }
 
 /*提交成功彈窗樣式，加入成功遮罩與勾勾動畫的樣式 */
-/*包含了圓圈繪製stroke、填色fill與彈跳scale的動畫效果。*/
 .success-overlay {
     display: none;
     position: fixed;
@@ -576,7 +574,7 @@ body {
     z-index: 3000;
     align-items: center;
     justify-content: center;
-    padding: 20px; /* 與結帳區相同的間距 */
+    padding: 20px;
 }
 
 .success-overlay.active { display: flex; }
@@ -588,11 +586,11 @@ body {
     text-align: center;
     max-width: 320px;
     width: 90%;
-    max-height: 90vh; /* 與結帳區相同的最大高度 */
+    max-height: 90vh; 
     overflow-y: auto; /* 內容過長時可捲動 */
     animation: slideUp 0.4s ease-out;
 
-    /* 修正捲軸蓋住圓角的問題 (比照結帳區) */
+    /* 修正捲軸蓋住圓角的問題 */
     scrollbar-width: thin;
     scrollbar-color: var(--primary-color) transparent;
 }
@@ -619,7 +617,7 @@ body {
 .success-card p { font-size: 0.9rem; color: #666; }
 
 #back-to-home-btn {
-    margin-top: 25px; /* 增加按鈕與上方文字的間距 */
+    margin-top: 25px; 
 }
 
 /* 成功視窗內的訂單明細樣式 */
@@ -736,7 +734,7 @@ body {
         flex-direction: column;
         align-items: center;
         width: 100%;
-        transform: translateX(100%); /* 預設在右側畫面外 */
+        transform: translateX(100%); 
         transition: transform 0.4s ease-in-out;
         padding-top: 50px;
         gap: 30px;
@@ -760,16 +758,16 @@ body {
         padding: 50px 5%;
     }
 }
-/* 修改後的產品網格設定 */
+/* 產品網格設定 */
 .product-grid {
     display: grid;
-    /* 強制將每列分為三等份並排 (1fr 代表一等份) */
+    /* 將每列分為三等份並排 (1fr 代表一等份) */
     grid-template-columns: repeat(3, 1fr); 
-    gap: 30px; /* 卡片與卡片之間的間距 */
+    gap: 30px; 
     margin-bottom: 40px;
 }
 
-/* 響應式設定：當螢幕寬度小於 992px 時（如平板），改為兩欄 */
+/* 響應式設定：當螢幕寬度小於 992px 時，改為兩欄 */
 @media (max-width: 992px) {
     .product-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -786,16 +784,16 @@ body {
 /* 橫向捲動功能樣式 */
 .product-grid.scroll-x {
     display: flex;           /* 覆蓋原本的 Grid，改用 Flex 以便橫向排列 */
-    overflow-x: auto;        /* 開啟水平捲動 */
+    overflow-x: auto;        /* 水平捲動 */
     gap: 30px;
-    padding-bottom: 15px;    /* 為捲軸留出空間 */
-    scroll-snap-type: x mandatory; /* 讓卡片捲動時有「磁吸」效果 */
+    padding-bottom: 15px;    
+    scroll-snap-type: x mandatory; 
     -webkit-overflow-scrolling: touch; /* 優化 iOS 捲動流暢度 */
 }
 
 .product-grid.scroll-x .card {
-    flex: 0 0 280px;         /* 確保卡片寬度固定，不會被壓縮 */
-    scroll-snap-align: start; /* 磁吸對齊起始位置 */
+    flex: 0 0 280px;         
+    scroll-snap-align: start; 
 }
 
 /* 優化橫向捲軸外觀 */
