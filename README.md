@@ -8,7 +8,6 @@
 
 - HTML5 / CSS3
 - Vanilla JavaScript
-- Google Fonts（Noto Sans TC）
 - `localStorage`（購物車資料持久化）
 
 ## 功能特色
