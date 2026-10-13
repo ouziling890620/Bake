@@ -1,12 +1,9 @@
 // 初始化購物車資料：嘗試從 localStorage 讀取，若無則為空陣列
-// 在做什麼：去瀏覽器的「記憶空間 (localStorage)」找找看有沒有之前存過的購物車資料。
-// 為什麼需要：這樣使用者重新整理網頁或關掉瀏覽器再回來時，原本選好的麵包才不會消失。
-// 刪掉會怎樣：每次重新整理網頁，購物車就會被歸零。
-// 初學者難點：如果前面找不到資料（空值)，就給它一個空的陣列 []」。
+// 去瀏覽器的「記憶空間 (localStorage)」找找看有沒有之前存過的購物車資料。
 let cart = JSON.parse(localStorage.getItem('bakeryCart')) || [];
 
 // 當網頁載入完成後執行
-//第一行是「等網頁所有東西都蓋好後再執行」。後面的 const 是在幫網頁上的按鈕、文字框取名字（變數），方便之後控制。
+// const：幫網頁上的按鈕、文字框取名字（變數）。
 document.addEventListener('DOMContentLoaded', () => {
     const cartCountElement = document.getElementById('cart-count');
     const addToCartButtons = document.querySelectorAll('.btn-cart');
@@ -34,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCart();
 
     // 設定取貨日期範圍：隔日至兩週內
-    // 設定取貨日期範圍：今日至兩週內
     if (pickupDateInput) {
         const today = new Date();
         const tomorrow = new Date();
@@ -63,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 數量增減按鈕功能控制 (+/-)
-    // e.target。這是在問電腦：「到底是哪一個按鈕被點到了？」因為網頁上有很多個 + 按鈕，電腦需要確認身份。
+    // e.target。在問電腦：「到底是哪一個按鈕被點到了？」因為網頁上有很多個 + 按鈕，電腦需要確認身份。
     document.querySelectorAll('.product-grid').forEach(grid => {
         grid.addEventListener('click', (e) => {
             if (e.target.classList.contains('qty-btn')) {
@@ -85,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
     addToCartButtons.forEach(button => {
         button.addEventListener('click', () => {
             // 取得商品名稱與價格
-            // 建議改用 closest 確保即使 HTML 結構微調也能準確找到容器
             const productCard = button.closest('.product-item') || button.parentElement;
             const productName = productCard.querySelector('h4').textContent;
             const productPrice = parseInt(productCard.querySelector('.price').textContent.replace('$', ''));
@@ -135,7 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // 切換購物車視窗顯示/隱藏
     cartBtn.addEventListener('click', (e) => {
         e.stopPropagation(); // 防止事件冒泡
-        //這是在叫電腦「不要把點擊事件傳給別人」，防止剛打開視窗就被後面的「點擊頁面其他地方關閉」功能給關掉。
         cartModal.classList.toggle('active');
     });
 
@@ -158,7 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 點擊背景（周遭灰底部分）也關閉結帳畫面
     checkoutOverlay.addEventListener('click', (e) => {
-        // 檢查被點擊的目標是否就是背景遮罩本身（而不是內部的表單容器）
         if (e.target === checkoutOverlay) {
             checkoutOverlay.classList.remove('active');
         }
@@ -268,7 +261,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (found) {
                 found.count++;
             } else {
-                // 使用解構賦值複製物件，並新增 count 屬性
                 groupedCart.push({ ...item, count: 1 });
             }
         });
